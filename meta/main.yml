@@ -1,0 +1,18 @@
+galaxy_info:
+  author: aadl
+  description: role to configure host for lxc-based public station
+  company: Ann Arbor District Library
+
+  license: GPL-3.0-only
+
+  min_ansible_version: '3.0'
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - xenial
+
+  galaxy_tags:
+    - code4lib
+
+dependencies: []
