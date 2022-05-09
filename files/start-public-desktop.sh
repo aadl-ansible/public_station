@@ -4,6 +4,8 @@ apparmor_parser -R /etc/apparmor.d/sbin.dhclient
 apparmor_parser -R /etc/apparmor.d/usr.sbin.cupsd
 lxc-copy -e -n public-desktop -N public-desk -m bind=/media:/media:rw -B aufs
 
+sleep 30
+
 lxc-device -n public-desk add /dev/tty8 /dev/tty8
 lxc-device -n public-desk add /dev/mem /dev/mem
 
