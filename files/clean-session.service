@@ -1,0 +1,9 @@
+[Unit]
+Description=Clear Stale Sessions
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "rm -rf /var/lib/lxc/public-desk"
+
+[Install]
+WantedBy=multi-user.target
