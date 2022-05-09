@@ -1,0 +1,24 @@
+---
+- name: Install USB automount package
+  ansible.builtin.apt:
+    name: usbmount
+    state: present
+    cache_valid_time: 86400
+# Exfat support / pulls in exfat-utils
+- name: Install support for NTFS, HFS and ExFAT
+  ansible.builtin.apt:
+    name: ['exfat-fuse', 'ntfs-3g', 'hfsutils' ]
+    state: present
+    cache_valid_time: 86400
+- name: USBMount | Fix Mount Options
+  ansible.builtin.lineinfile:
+    dest: /etc/usbmount/usbmount.conf
+    regexp: "^MOUNTOPTIONS="
+    line: "MOUNTOPTIONS=\"sync,noexec,nodev,noatime,nodiratime,uid=1000,gid=1000\""
+    backrefs: yes
+- name: USBMount | Automatically mount most filesystems
+  ansible.builtin.lineinfile:
+    dest: /etc/usbmount/usbmount.conf
+    regexp: "^FILESYSTEMS"
+    line: "FILESYSTEMS=\"vfat exfat ext2 ext3 ext4 hfsplus ntfs-3g fuseblk\""
+    backrefs: yes
